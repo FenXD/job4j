@@ -1,8 +1,18 @@
+/**
+* Hello world.
+*/
 package ru.job4j.calculate;
-public class Calculate{
-public static void main(String[] args)
-{
-	System.out.println("Hello world");
+	/**
+	* Printing Hello world
+	* @author Maksim Katorgin (d.193121@gmail.com)
+	*/
+	public class Calculate {
+	/**
+	* Main
+	* @param args - args
+	*/	
+	public static void main(String[] args) {	
+		System.out.println("Hello world");
+	}
 	
-}
 }
