@@ -21,7 +21,7 @@ public class CalculateTest {
 		String expect = "Echo,echo,echo:Maksim";
 		Calculate calc = new Calculate();
 		String result = calc.echo(name);
-		assertThat(result,is(expect));
+		assertThat(result, is(expect));
 	}
 	
 }
