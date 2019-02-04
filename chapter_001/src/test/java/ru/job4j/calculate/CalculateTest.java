@@ -5,16 +5,16 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
-*Test
-*
-*@author Maksim Katorgin
-*@version $Id$
-*@since 03.02.2019
-*/
+ *Test
+ *
+ *@author Maksim Katorgin
+ *@version $Id$
+ *@since 03.02.2019
+ */
 public class CalculateTest {
-/**
-*Test echo
-*/
+	/**
+	 *Test echo
+	 */
 	@Test
 	public void whenTakeNameThenThreeEchoPlusName() {
 		String name = "Maksim";
@@ -23,5 +23,5 @@ public class CalculateTest {
 		String result = calc.echo(name);
 		assertThat(result, is(expect));
 	}
-	
+
 }

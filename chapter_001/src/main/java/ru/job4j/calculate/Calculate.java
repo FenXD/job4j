@@ -1,6 +1,3 @@
-/**
-* Hello world.
-*/
 package ru.job4j.calculate;
 	/**
 	* Printing Hello world
