@@ -1,5 +1,5 @@
 /** 
-* Package for testing
+* Package for testing Hello world
 * @author Maksim katorgin
 * @version 0.1
 * @since 03.02.2019
