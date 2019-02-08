@@ -9,6 +9,6 @@ public class PointTest {
     public void whenPoint2and0ThenDistandeToPoint0and0equals2() {
         Point a = new Point(2, 0);
         Point b = new Point(0, 0);
-        assertThat(2, is(a.distanceTo(b)));
+        assertThat(2.0, is(a.distanceTo(b)));
     }
 }
