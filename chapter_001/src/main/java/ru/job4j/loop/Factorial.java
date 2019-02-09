@@ -11,10 +11,10 @@ public class Factorial {
      */
     public int calc(int n) {
         int fac = 1;
-            while (n > 0) {
-                fac = fac * n;
-                n--;
-            }
-    return fac;
+        while (n > 0) {
+            fac = fac * n;
+            n--;
+        }
+        return fac;
     }
 }
