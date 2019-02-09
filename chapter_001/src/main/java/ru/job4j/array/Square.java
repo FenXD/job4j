@@ -2,6 +2,9 @@ package ru.job4j.array;
 
 /**
  * Массив степеней
+ * @author Maksim Katorgin
+ * @version 0.2
+ * @since 09.02.2019
  */
 public class Square {
     /**
@@ -11,10 +14,8 @@ public class Square {
      */
     public int[] calculate(int bound) {
         int[] rst = new int[bound];
-        int j = 1;
         for (int i = 0; i != rst.length; i++) {
-            rst[i] = j * j;
-            j++;
+            rst[i] = (i + 1) * (i + 1);
         }
         return rst;
     }
