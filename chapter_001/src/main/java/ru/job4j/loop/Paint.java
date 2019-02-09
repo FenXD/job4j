@@ -1,5 +1,5 @@
 package ru.job4j.loop;
-
+import java.util.function.BiPredicate;
 /**
  * Пирамида
  * @author Maksim Katorgin
@@ -13,11 +13,47 @@ public class Paint {
      * @return Пирамида
      */
     public String pyramid(int height) {
+        return this.loop(height,
+                2 * height - 1,
+                (row, column) -> row >= height - column - 1 && row + height - 1 >= column);
+    }
+
+    /**
+     * Треугольник
+     * @param height - высота
+     * @return рисунок
+     */
+    public String rightTrl(int height) {
+        return this.loop(
+                height,
+                height,
+                (row, column) -> row >= column
+        );
+    }
+    /**
+     * Треугольник
+     * @param height - высота
+     * @return рисунок
+     */
+    public String leftTrl(int height) {
+        return this.loop(
+                height,
+                height,
+                (row, column) -> row >= height - column - 1
+        );
+    }
+    /**
+     * Универстальный метод
+     * @param height - высота
+     * @param width - ширина
+     * @param predict - условие
+     * @return рисунок
+     */
+    private String loop(int height, int width, BiPredicate<Integer, Integer> predict) {
         StringBuilder screen = new StringBuilder();
-        int weight = 2 * height - 1;
         for (int row = 0; row != height; row++) {
-            for (int column = 0; column != weight; column++) {
-                if (row >= height - column - 1 && row + height - 1 >= column) {
+            for (int column = 0; column != width; column++) {
+                if (predict.test(row, column)) {
                     screen.append("^");
                 } else {
                     screen.append(" ");
