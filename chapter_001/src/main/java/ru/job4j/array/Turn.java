@@ -3,7 +3,7 @@ package ru.job4j.array;
 /**
  * Разворот массива
  * @author Maksim Katorgin
- * @version 0.1
+ * @version 0.2
  * @since 09.02.2019
  */
 public class Turn {
