@@ -3,7 +3,7 @@ package ru.job4j.array;
 /**
  * Однородный массив
  * @author Maksim Katorgin
- * @version 0.1
+ * @version 0.2
  * @since 09.02.2019
  */
 public class Check {
@@ -17,6 +17,7 @@ public class Check {
         for (int i = 0; i != data.length; i++) {
             if (data[i] != data[1]) {
                 result = false;
+                break;
             }
         }
         return result;
