@@ -3,7 +3,7 @@ package ru.job4j.array;
 /**
  * Реализация метода startWith
  * @author Maksim Katorgin
- * @version 0.1
+ * @version 0.2
  * @since 09.02.2019
  */
 public class ArrayChar {
@@ -28,6 +28,7 @@ public class ArrayChar {
         for (int i = 0; i < value.length; i++) {
             if (value[i] != data[i]) {
                 result = false;
+                break;
             }
         }
         return result;
