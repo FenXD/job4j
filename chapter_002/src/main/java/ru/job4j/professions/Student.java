@@ -1,8 +1,8 @@
 package ru.job4j.professions;
 
 public class Student {
-    public String name;
-    public int age;
+    private String name;
+    private int age;
 
     public Student(String name, int age) {
        this.name = name;
