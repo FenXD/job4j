@@ -1,5 +1,8 @@
 package ru.job4j.tracker;
 
+
+import java.util.Arrays;
+
 /**
  * @author Maksim Katorgin
  * @version $Id$
@@ -26,7 +29,7 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < this.items.length; i++) {
+        for (int i = 0; i < this.position; i++) {
             if (items[i].getId().equals(id)) {
                 result = items[i];
                 break;
@@ -36,21 +39,6 @@ public class Tracker {
 
     }
 
-    /**
-     * Нахождение позиции элемента в массиве
-     * @param task - элемент поиска
-     * @return - номер позициии в массива
-     */
-    public int inArrayId(Item task) {
-        int result = -1;
-        for (int i = 0; i < this.items.length; i++) {
-            if (items[i].equals(task)) {
-                result = i;
-                break;
-            }
-        }
-        return result;
-    }
 
     /**
      * Удаление эемента массива
@@ -59,14 +47,11 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        int pos = this.inArrayId(this.findById(id));
-        for (int i = pos; i < this.items.length; i++) {
-            if (i == this.items.length - 1) {
-                this.items[i] = null;
+        for (int i = 0; i < position; i++) {
+            if (this.items[i].getId().equals(id)) {
+                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
                 result = true;
-            } else {
-                this.items[i] = this.items[i + 1];
-                result = true;
+                break;
             }
         }
 
@@ -81,12 +66,12 @@ public class Tracker {
      */
     public boolean replace(String id, Item task) {
         boolean result = false;
-        if (this.findById(id) != null) {
-            Item old = this.findById(id);
-            old.setName(task.getName());
-            old.setTime(task.getTime());
-            old.setDescr(task.getDiscr());
-            result = true;
+        for (Item item:items) {
+            if (item.getId().equals(id)) {
+                item = task;
+                result = true;
+                break;
+            }
         }
         return result;
     }
@@ -96,15 +81,7 @@ public class Tracker {
      * @return массив ненулевых элементов
      */
     public Item[] findAll() {
-        int count = 0;
-        for (Item item:items) {
-            if (item != null) {
-                count += 1;
-            }
-        }
-        Item[] result = new Item[count];
-        System.arraycopy(this.items, 0, result, 0, count);
-        return result;
+        return Arrays.copyOf(this.items, position);
     }
 
     /**
@@ -114,7 +91,6 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         int count = 0;
-
         for (Item item : items) {
             if (item != null && item.getName().equals(key)) {
                 count++;
@@ -124,8 +100,7 @@ public class Tracker {
         Item[] result = new Item[count];
         for (Item item:items) {
             if (item != null && item.getName().equals(key)) {
-                result[position] = item;
-                position++;
+                result[position++] = item;
             }
         }
         return result;
@@ -136,7 +111,8 @@ public class Tracker {
      * @return Уникальный ключ.
      */
     private String generateId() {
-        long id = System.currentTimeMillis();
+        long rand = (long) Math.random();
+        long id = System.currentTimeMillis() + rand;
         return Long.toString(id);
     }
 }
