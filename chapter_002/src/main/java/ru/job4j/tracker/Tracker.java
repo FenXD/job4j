@@ -66,9 +66,10 @@ public class Tracker {
      */
     public boolean replace(String id, Item task) {
         boolean result = false;
-        for (Item item:items) {
-            if (item.getId().equals(id)) {
-                item = task;
+        for (int i = 0; i < this.position; i++) {
+            if (this.items[i].getId().equals(id)) {
+                task.setId(this.generateId());
+                this.items[i] = task;
                 result = true;
                 break;
             }
@@ -91,19 +92,13 @@ public class Tracker {
      */
     public Item[] findByName(String key) {
         int count = 0;
-        for (Item item : items) {
-            if (item != null && item.getName().equals(key)) {
-                count++;
+        Item[] result = new Item[position];
+        for (int i = 0; i < position; i++) {
+            if (items[i].getName().equals(key)) {
+                result[count++] = items[i];
             }
         }
-        int position = 0;
-        Item[] result = new Item[count];
-        for (Item item:items) {
-            if (item != null && item.getName().equals(key)) {
-                result[position++] = item;
-            }
-        }
-        return result;
+        return Arrays.copyOf(result, count);
     }
 
     /**
