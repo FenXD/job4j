@@ -70,13 +70,5 @@ public class TrackerTest {
         tracker.add(second);
         assertThat(first, is(tracker.findById(first.getId())));
     }
-    @Test
-    public void whenFindFirstElementOfArrayThenInArrayIdEqualsZero() {
-        Tracker tracker = new Tracker();
-        Item first = new Item("first", "first", 123L);
-        Item second = new Item("second", "second", 1234L);
-        tracker.add(first);
-        tracker.add(second);
-        assertThat(0, is(tracker.inArrayId(first)));
-    }
+
 }
