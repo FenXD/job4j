@@ -68,7 +68,7 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
             if (this.items[i].getId().equals(id)) {
-                task.setId(this.generateId());
+                task.setId(this.items[i].getId());
                 this.items[i] = task;
                 result = true;
                 break;
