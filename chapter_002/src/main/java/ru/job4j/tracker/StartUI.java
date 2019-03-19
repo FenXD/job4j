@@ -43,6 +43,10 @@ public class StartUI {
      * Получения днных от пользователя
      */
     private final Input input;
+    /**
+     * Константа выхода из приложения
+     */
+    private boolean exit = false;
 
     /**
      * Конструктор Класса
@@ -58,7 +62,6 @@ public class StartUI {
      * Основной цикс программы
      */
     public void init() {
-        boolean exit = false;
         while (!exit) {
             this.showMenu();
             String answer  = this.input.ask("Выберите пункт меню: ");
