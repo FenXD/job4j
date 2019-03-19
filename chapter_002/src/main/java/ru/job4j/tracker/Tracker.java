@@ -49,7 +49,8 @@ public class Tracker {
         boolean result = false;
         for (int i = 0; i < position; i++) {
             if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.position - i - 1);
+                System.arraycopy(this.items, i + 1, this.items, i, this.position - i);
+                position--;
                 result = true;
                 break;
             }
