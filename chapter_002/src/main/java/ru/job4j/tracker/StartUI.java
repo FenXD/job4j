@@ -101,10 +101,10 @@ public class StartUI {
 
         Item[] items = tracker.findAll();
         for (int i = 0; i < items.length; i++) {
-            System.out.println("ID: " + items[i].getId() +
-                    "\nName: " + items[i].getName() +
-                    "\nDescr: " + items[i].getDiscr() +
-                    "\nTime: " + items[i].getTime());
+            System.out.println("ID: " + items[i].getId()
+                    + "\nName: " + items[i].getName()
+                    + "\nDescr: " + items[i].getDiscr()
+                    + "\nTime: " + items[i].getTime());
             System.out.println("__________________");
         }
         this.init();
@@ -138,10 +138,10 @@ public class StartUI {
      */
     public void findById() {
         String id = input.ask("Введите ID для поиска: ");
-        System.out.println("ID: " + tracker.findById(id).getId() +
-                "\nName: " + tracker.findById(id).getName() +
-                "\nDescr: " + tracker.findById(id).getDiscr() +
-                "\nTime: " + tracker.findById(id).getTime());
+        System.out.println("ID: " + tracker.findById(id).getId()
+                + "\nName: " + tracker.findById(id).getName()
+                + "\nDescr: " + tracker.findById(id).getDiscr()
+                + "\nTime: " + tracker.findById(id).getTime());
         System.out.println("__________________");
         this.init();
     }
@@ -153,10 +153,10 @@ public class StartUI {
         String key = this.input.ask("Введите имя для поиска: ");
         Item[] items = tracker.findByName(key);
         for (int i = 0; i < items.length; i++) {
-            System.out.println("ID: " + items[i].getId() +
-                    "\nName: " + items[i].getName() +
-                    "\nDescr: " + items[i].getDiscr() +
-                    "\nTime: " + items[i].getTime());
+            System.out.println("ID: " + items[i].getId()
+                    + "\nName: " + items[i].getName()
+                    + "\nDescr: " + items[i].getDiscr()
+                    + "\nTime: " + items[i].getTime());
             System.out.println("__________________");
         }
         this.init();
@@ -168,13 +168,13 @@ public class StartUI {
      */
     public void showMenu() {
         System.out.println(
-                "1. Add new Item\n" +
-                        "2. Show all items\n" +
-                        "3. Edit item\n" +
-                        "4. Delete item\n" +
-                        "5. Find item by Id\n" +
-                        "6. Find items by name\n" +
-                        "0. Exit Program");
+                "1. Add new Item\n"
+                        + "2. Show all items\n"
+                        + "3. Edit item\n"
+                        + "4. Delete item\n"
+                        + "5. Find item by Id\n"
+                        + "6. Find items by name\n"
+                        + "0. Exit Program");
     }
 
     /**

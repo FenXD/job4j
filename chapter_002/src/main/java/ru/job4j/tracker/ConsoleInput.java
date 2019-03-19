@@ -8,7 +8,7 @@ package ru.job4j.tracker;
 
 import java.util.Scanner;
 
-public class ConsoleInput implements Input{
+public class ConsoleInput implements Input {
 
     private Scanner scanner = new Scanner(System.in);
 
@@ -17,7 +17,7 @@ public class ConsoleInput implements Input{
      * @param question вопрос пользователю для вывода на экран
      * @return ответ пользователя
      */
-    public String ask(String question){
+    public String ask(String question) {
         System.out.println(question);
         return scanner.nextLine();
     }
