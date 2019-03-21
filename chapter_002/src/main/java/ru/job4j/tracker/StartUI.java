@@ -118,7 +118,7 @@ public class StartUI {
         String name = this.input.ask("Введите имя новой заявки: ");
         String discr = this.input.ask("Введите описание новой заявки: ");
         String time = this.input.ask("Ввеите дату создания без точек: ");
-        if(tracker.replace(id, new Item(name, discr, Long.parseLong(time)))) {
+        if (tracker.replace(id, new Item(name, discr, Long.parseLong(time)))) {
             System.out.println("Заявка отредактирована!");
         } else {
             System.out.println("Заявка не отредактирована!");
