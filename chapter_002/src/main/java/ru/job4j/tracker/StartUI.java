@@ -104,10 +104,7 @@ public class StartUI {
 
         Item[] items = tracker.findAll();
         for (int i = 0; i < items.length; i++) {
-            System.out.println("ID: " + items[i].getId()
-                    + "\nName: " + items[i].getName()
-                    + "\nDescr: " + items[i].getDiscr()
-                    + "\nTime: " + items[i].getTime());
+            System.out.println(items[i].toString());
             System.out.println("__________________");
         }
         this.init();
@@ -121,8 +118,12 @@ public class StartUI {
         String name = this.input.ask("Введите имя новой заявки: ");
         String discr = this.input.ask("Введите описание новой заявки: ");
         String time = this.input.ask("Ввеите дату создания без точек: ");
-        tracker.replace(id, new Item(name, discr, Long.parseLong(time)));
-        System.out.println("Заявка отредактирована!");
+        if(tracker.replace(id, new Item(name, discr, Long.parseLong(time)))) {
+            System.out.println("Заявка отредактирована!");
+        } else {
+            System.out.println("Заявка не отредактирована!");
+        }
+
         this.init();
     }
 
@@ -131,8 +132,11 @@ public class StartUI {
      */
     public void deleteItem() {
         String id = this.input.ask("Введите ID заявки для удаления: ");
-        tracker.delete(id);
-        System.out.println("Заявка удалена!");
+        if (tracker.delete(id)) {
+            System.out.println("Заявка удалена!");
+        } else {
+            System.out.println("Заявка не удалена!");
+        }
         this.init();
     }
 
@@ -141,10 +145,8 @@ public class StartUI {
      */
     public void findById() {
         String id = input.ask("Введите ID для поиска: ");
-        System.out.println("ID: " + tracker.findById(id).getId()
-                + "\nName: " + tracker.findById(id).getName()
-                + "\nDescr: " + tracker.findById(id).getDiscr()
-                + "\nTime: " + tracker.findById(id).getTime());
+        Item item = tracker.findById(id);
+        System.out.println(item.toString());
         System.out.println("__________________");
         this.init();
     }
@@ -156,10 +158,7 @@ public class StartUI {
         String key = this.input.ask("Введите имя для поиска: ");
         Item[] items = tracker.findByName(key);
         for (int i = 0; i < items.length; i++) {
-            System.out.println("ID: " + items[i].getId()
-                    + "\nName: " + items[i].getName()
-                    + "\nDescr: " + items[i].getDiscr()
-                    + "\nTime: " + items[i].getTime());
+            System.out.println(items[i].toString());
             System.out.println("__________________");
         }
         this.init();

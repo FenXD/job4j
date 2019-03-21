@@ -56,5 +56,16 @@ public class Item {
         return Objects.hash(id, name, description, time);
     }
 
+    /**
+     * Вывод информации об объекте
+     * @return вывод информации об объекте
+     */
+    public String toString() {
+        return "ID: " + this.id
+                + "\nName: " + this.name
+                + "\nDiscroption: " + this.description
+                + "\nTime: " + this.time;
+    }
+
 
 }
