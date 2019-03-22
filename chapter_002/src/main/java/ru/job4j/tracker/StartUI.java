@@ -94,7 +94,6 @@ public class StartUI {
         Item item = new Item(name, desk, Long.parseLong(time));
         this.tracker.add(item);
         System.out.println("Заявка с Id " + item.getId() + " создана!");
-        this.init();
     }
 
     /**
@@ -107,7 +106,6 @@ public class StartUI {
             System.out.println(items[i].toString());
             System.out.println("__________________");
         }
-        this.init();
     }
 
     /**
@@ -124,7 +122,6 @@ public class StartUI {
             System.out.println("Заявка не отредактирована!");
         }
 
-        this.init();
     }
 
     /**
@@ -137,7 +134,6 @@ public class StartUI {
         } else {
             System.out.println("Заявка не удалена!");
         }
-        this.init();
     }
 
     /**
@@ -148,7 +144,6 @@ public class StartUI {
         Item item = tracker.findById(id);
         System.out.println(item.toString());
         System.out.println("__________________");
-        this.init();
     }
 
     /**
@@ -161,7 +156,6 @@ public class StartUI {
             System.out.println(items[i].toString());
             System.out.println("__________________");
         }
-        this.init();
     }
 
 
