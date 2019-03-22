@@ -142,8 +142,11 @@ public class StartUI {
     public void findById() {
         String id = input.ask("Введите ID для поиска: ");
         Item item = tracker.findById(id);
-        System.out.println(item.toString());
-        System.out.println("__________________");
+        if (item != null) {
+            System.out.println(item.toString());
+        } else {
+            System.out.println("__________________");
+        }
     }
 
     /**
