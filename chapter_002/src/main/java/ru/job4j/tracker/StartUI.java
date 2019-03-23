@@ -145,8 +145,9 @@ public class StartUI {
         if (item != null) {
             System.out.println(item.toString());
         } else {
-            System.out.println("__________________");
+            System.out.println("Не найдено");
         }
+        System.out.println("__________________");
     }
 
     /**

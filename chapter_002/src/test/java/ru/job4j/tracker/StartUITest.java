@@ -1,6 +1,12 @@
 package ru.job4j.tracker;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
 
@@ -11,6 +17,20 @@ import static org.hamcrest.core.Is.is;
  * @version $Id$
  */
 public class StartUITest {
+
+    private final PrintStream stout = System.out;
+
+    private final ByteArrayOutputStream out = new ByteArrayOutputStream();
+
+
+    @Before
+    public void loarOut() {
+        System.setOut(new PrintStream(this.out));
+    }
+    @After
+    public void resetOut() {
+        System.setOut(this.stout);
+    }
 
     @Test
     public void whenAddNewItemToTrackerThenTrackerHasSameItem() {
@@ -37,5 +57,61 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"4", item.getId(), "0"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("secname"));
+    }
+
+    @Test
+    public void whenTwoElementsAddedThenprintingTwoElements() {
+        Tracker tracker = new Tracker();
+        Item fitem = tracker.add(new Item("first", "first", 1L));
+        Input input = new StubInput(new String[] {"2", "0"});
+        new StartUI(input, tracker).init();
+        assertThat(this.out.toString(), is(new StringBuilder()
+                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append("ID: " + fitem.getId())
+                .append("\nName: " + fitem.getName())
+                .append("\nDiscroption: " + fitem.getDiscr())
+                .append("\nTime: " + fitem.getTime())
+                .append(System.lineSeparator())
+                .append("__________________")
+                .append(System.lineSeparator())
+                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .toString()));
+    }
+    @Test
+    public void whenFindByIdThenPrint() {
+        Tracker tracker = new Tracker();
+        Item fitem = tracker.add(new Item("first", "first", 1L));
+        Input input = new StubInput(new String[] {"5", fitem.getId(), "0"});
+        new StartUI(input, tracker).init();
+        assertThat(this.out.toString(), is(new StringBuilder()
+                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append("ID: " + fitem.getId())
+                .append("\nName: " + fitem.getName())
+                .append("\nDiscroption: " + fitem.getDiscr())
+                .append("\nTime: " + fitem.getTime())
+                .append(System.lineSeparator())
+                .append("__________________")
+                .append(System.lineSeparator())
+                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .toString()));
+    }
+
+    @Test
+    public void whenFindByNameThenPrint() {
+        Tracker tracker = new Tracker();
+        Item fitem = tracker.add(new Item("first", "first", 1L));
+        Input input = new StubInput(new String[] {"6", "first", "0"});
+        new StartUI(input, tracker).init();
+        assertThat(this.out.toString(), is(new StringBuilder()
+                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append("ID: " + fitem.getId())
+                .append("\nName: " + fitem.getName())
+                .append("\nDiscroption: " + fitem.getDiscr())
+                .append("\nTime: " + fitem.getTime())
+                .append(System.lineSeparator())
+                .append("__________________")
+                .append(System.lineSeparator())
+                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .toString()));
     }
 }
