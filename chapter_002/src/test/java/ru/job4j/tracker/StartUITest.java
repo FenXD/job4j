@@ -22,6 +22,7 @@ public class StartUITest {
 
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
+    private String menu = "1. Add new Item\n" + "2. Show all items\n" + "3. Edit item\n" + "4. Delete item\n" + "5. Find item by Id\n" + "6. Find items by name\n" + "0. Exit Program\r\n";
 
     @Before
     public void loarOut() {
@@ -66,7 +67,7 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"2", "0"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
-                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append(menu)
                 .append("ID: " + fitem.getId())
                 .append("\nName: " + fitem.getName())
                 .append("\nDiscroption: " + fitem.getDiscr())
@@ -74,7 +75,7 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("__________________")
                 .append(System.lineSeparator())
-                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append(menu)
                 .toString()));
     }
     @Test
@@ -84,7 +85,7 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"5", fitem.getId(), "0"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
-                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append(menu)
                 .append("ID: " + fitem.getId())
                 .append("\nName: " + fitem.getName())
                 .append("\nDiscroption: " + fitem.getDiscr())
@@ -92,7 +93,7 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("__________________")
                 .append(System.lineSeparator())
-                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append(menu)
                 .toString()));
     }
 
@@ -103,7 +104,7 @@ public class StartUITest {
         Input input = new StubInput(new String[] {"6", "first", "0"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
-                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append(menu)
                 .append("ID: " + fitem.getId())
                 .append("\nName: " + fitem.getName())
                 .append("\nDiscroption: " + fitem.getDiscr())
@@ -111,7 +112,7 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("__________________")
                 .append(System.lineSeparator())
-                .append("1. Add new Item\n2. Show all items\n3. Edit item\n4. Delete item\n5. Find item by Id\n6. Find items by name\n0. Exit Program\r\n")
+                .append(menu)
                 .toString()));
     }
 }
