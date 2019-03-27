@@ -62,25 +62,12 @@ public class StartUI {
      * Основной цикс программы
      */
     public void init() {
-        while (!exit) {
-            this.showMenu();
-            String answer  = this.input.ask("Выберите пункт меню: ");
-            if (ADD.equals(answer)) {
-                this.createItem();
-            } else if (SHOW.equals(answer)) {
-                this.showAll();
-            } else if (EDIT.equals(answer)) {
-                this.edit();
-            } else if (DELETE.equals(answer)) {
-                this.deleteItem();
-            } else if (FBYID.equals(answer)) {
-                this.findById();
-            } else if (FBYN.equals(answer)) {
-                this.findByName();
-            } else if (EXIT.equals(answer)) {
-                exit = true;
-            }
-        }
+        TrackerMenu menu = new TrackerMenu(this.input, this.tracker);
+        menu.fillActions();
+        do {
+            menu.show();
+            menu.select(Integer.valueOf(this.input.ask("Select: ")));
+        } while (!"y".equals(this.input.ask("Exit? (y/n): ")));
     }
 
     /**

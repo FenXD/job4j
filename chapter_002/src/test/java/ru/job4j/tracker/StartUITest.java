@@ -22,7 +22,7 @@ public class StartUITest {
 
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-    private String menu = "1. Add new Item\n" + "2. Show all items\n" + "3. Edit item\n" + "4. Delete item\n" + "5. Find item by Id\n" + "6. Find items by name\n" + "0. Exit Program\r\n";
+    private String menu = "1. Add new Item\r\n2. Show all items\r\n3. Edit Item\r\n4. Delete item\r\n5. Find item by id\r\n6. Find item by name\r\n";
 
     @Before
     public void loarOut() {
@@ -36,7 +36,7 @@ public class StartUITest {
     @Test
     public void whenAddNewItemToTrackerThenTrackerHasSameItem() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[] {"1", "name", "Discr", "123", "0"});
+        Input input = new StubInput(new String[] {"1", "name", "Discr", "123", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("name"));
     }
@@ -45,7 +45,7 @@ public class StartUITest {
     public void whenChangingNameOfItemThenTrackerHasChangedName() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("name", "discr", 12L));
-        Input input = new StubInput(new String[] {"3", item.getId(), "new name", "new descr", "21", "0"});
+        Input input = new StubInput(new String[] {"3", item.getId(), "new name", "new descr", "21", "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("new name"));
     }
@@ -55,7 +55,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("name", "descr", 12L));
         tracker.add(new Item("secname", "secdescr", 123L));
-        Input input = new StubInput(new String[] {"4", item.getId(), "0"});
+        Input input = new StubInput(new String[] {"4", item.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(tracker.findAll()[0].getName(), is("secname"));
     }
@@ -64,7 +64,7 @@ public class StartUITest {
     public void whenTwoElementsAddedThenprintingTwoElements() {
         Tracker tracker = new Tracker();
         Item fitem = tracker.add(new Item("first", "first", 1L));
-        Input input = new StubInput(new String[] {"2", "0"});
+        Input input = new StubInput(new String[] {"2", "y"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
                 .append(menu)
@@ -75,14 +75,13 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("__________________")
                 .append(System.lineSeparator())
-                .append(menu)
                 .toString()));
     }
     @Test
     public void whenFindByIdThenPrint() {
         Tracker tracker = new Tracker();
         Item fitem = tracker.add(new Item("first", "first", 1L));
-        Input input = new StubInput(new String[] {"5", fitem.getId(), "0"});
+        Input input = new StubInput(new String[] {"5", fitem.getId(), "y"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
                 .append(menu)
@@ -93,7 +92,6 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("__________________")
                 .append(System.lineSeparator())
-                .append(menu)
                 .toString()));
     }
 
@@ -101,7 +99,7 @@ public class StartUITest {
     public void whenFindByNameThenPrint() {
         Tracker tracker = new Tracker();
         Item fitem = tracker.add(new Item("first", "first", 1L));
-        Input input = new StubInput(new String[] {"6", "first", "0"});
+        Input input = new StubInput(new String[] {"6", "first", "y"});
         new StartUI(input, tracker).init();
         assertThat(this.out.toString(), is(new StringBuilder()
                 .append(menu)
@@ -112,7 +110,6 @@ public class StartUITest {
                 .append(System.lineSeparator())
                 .append("__________________")
                 .append(System.lineSeparator())
-                .append(menu)
                 .toString()));
     }
 }
