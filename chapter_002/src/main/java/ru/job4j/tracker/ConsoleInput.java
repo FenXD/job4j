@@ -22,4 +22,19 @@ public class ConsoleInput implements Input {
         return scanner.nextLine();
     }
 
+    public int ask(String question, int[] range) {
+        boolean exists = false;
+       int key = Integer.valueOf(this.ask(question));
+       for (int value : range) {
+           if (key == value) {
+               exists = true;
+           }
+       }
+        if (exists) {
+            return key;
+        } else {
+            throw new MenuOutExceprion("Out of bounds");
+        }
+    }
+
 }

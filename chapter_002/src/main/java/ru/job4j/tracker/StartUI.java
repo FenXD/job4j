@@ -7,35 +7,7 @@ package ru.job4j.tracker;
  * @version $Id$
  */
 public class StartUI {
-    /**
-     * Константа для добавления заявки
-     */
-    private static final String ADD = "1";
-    /**
-     * Константа для вывода списка всех заявок
-     */
-    private static final String SHOW = "2";
-    /**
-     * Константа для редактирования заявки
-     */
-    private static final String EDIT = "3";
-    /**
-     * Константа для удаления заявки
-     */
-    private static final String DELETE = "4";
-    /**
-     * Константа для поиска заявки по ID
-     */
-    private static final String FBYID = "5";
-    /**
-     * Константа для поиска заявки по имени
-     */
-    private static final String FBYN = "6";
-    /**
-     * Константа для выхода из приложения
-     */
-    private static final String EXIT = "0";
-    /**
+     /**
      * Хранилище заявок
      */
     private final Tracker tracker;
@@ -47,6 +19,7 @@ public class StartUI {
      * Константа выхода из приложения
      */
     private boolean exit = false;
+    private int[] range = new int[] {1, 2, 3, 4, 5, 6, 7};
 
     /**
      * Конструктор Класса
@@ -64,104 +37,14 @@ public class StartUI {
     public void init() {
         TrackerMenu menu = new TrackerMenu(this.input, this.tracker);
         menu.fillActions();
+//        this.range = new int[menu.getActionLength()];
+//        for (int i = 1; i < menu.getActionLength(); i++) {
+//            this.range[i] = i;
+//        }
         do {
             menu.show();
-            menu.select(Integer.valueOf(this.input.ask("Select: ")));
+            menu.select(Integer.valueOf(this.input.ask("Select: ", this.range)));
         } while (!"y".equals(this.input.ask("Exit? (y/n): ")));
-    }
-
-    /**
-     * Метод для создания новой заявки
-     */
-    public void createItem() {
-        System.out.println("Добавляю заявку........");
-        String name = this.input.ask("Ввеите имя заявки: ");
-        String desk = this.input.ask("Ввеите описание заявки: ");
-        String time = this.input.ask("Ввеите дату создания без точек: ");
-        Item item = new Item(name, desk, Long.parseLong(time));
-        this.tracker.add(item);
-        System.out.println("Заявка с Id " + item.getId() + " создана!");
-    }
-
-    /**
-     * Метод для вывода списка всех заявок
-     */
-    public void showAll() {
-
-        Item[] items = tracker.findAll();
-        for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i].toString());
-            System.out.println("__________________");
-        }
-    }
-
-    /**
-     * Метод для редактирования заявки
-     */
-    public void edit() {
-        String id = this.input.ask("Введите ID заявки, для замены: ");
-        String name = this.input.ask("Введите имя новой заявки: ");
-        String discr = this.input.ask("Введите описание новой заявки: ");
-        String time = this.input.ask("Ввеите дату создания без точек: ");
-        if (tracker.replace(id, new Item(name, discr, Long.parseLong(time)))) {
-            System.out.println("Заявка отредактирована!");
-        } else {
-            System.out.println("Заявка не отредактирована!");
-        }
-
-    }
-
-    /**
-     * Метод для удаления заявки
-     */
-    public void deleteItem() {
-        String id = this.input.ask("Введите ID заявки для удаления: ");
-        if (tracker.delete(id)) {
-            System.out.println("Заявка удалена!");
-        } else {
-            System.out.println("Заявка не удалена!");
-        }
-    }
-
-    /**
-     * Метод поиска заявки по идентификатору
-     */
-    public void findById() {
-        String id = input.ask("Введите ID для поиска: ");
-        Item item = tracker.findById(id);
-        if (item != null) {
-            System.out.println(item.toString());
-        } else {
-            System.out.println("Не найдено");
-        }
-        System.out.println("__________________");
-    }
-
-    /**
-     * Метод для поиска заявки по имени
-     */
-    public void findByName() {
-        String key = this.input.ask("Введите имя для поиска: ");
-        Item[] items = tracker.findByName(key);
-        for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i].toString());
-            System.out.println("__________________");
-        }
-    }
-
-
-    /**
-     * Метод для вывода меню
-     */
-    public void showMenu() {
-        System.out.println(
-                "1. Add new Item\n"
-                        + "2. Show all items\n"
-                        + "3. Edit item\n"
-                        + "4. Delete item\n"
-                        + "5. Find item by Id\n"
-                        + "6. Find items by name\n"
-                        + "0. Exit Program");
     }
 
     /**
@@ -169,6 +52,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }
