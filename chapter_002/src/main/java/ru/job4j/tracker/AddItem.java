@@ -1,16 +1,11 @@
 package ru.job4j.tracker;
 
-public class AddItem  implements UserAction {
+public class AddItem extends BaseAction {
 
-    private int number;
-    private String info;
     public AddItem(int number, String info) {
-        this.number = number;
-        this.info = info;
+        super(number, info);
     }
-    public int key() {
-        return number;
-    }
+
 
     public void execute(Input input, Tracker tracker) {
         System.out.println("Добавляю заявку........");
@@ -22,7 +17,4 @@ public class AddItem  implements UserAction {
         System.out.println("Заявка с Id " + item.getId() + " создана!");
     }
 
-    public String info() {
-        return info;
-    }
 }

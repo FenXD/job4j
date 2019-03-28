@@ -1,20 +1,9 @@
 package ru.job4j.tracker;
 
-public class FindByName implements UserAction {
+public class FindByName extends BaseAction {
 
-    private int number;
-    private String info;
     public FindByName(int number, String info) {
-        this.number = number;
-        this.info = info;
-    }
-
-    public int key() {
-        return this.number;
-    }
-
-    public String info() {
-        return this.info;
+        super(number, info);
     }
 
     public void execute(Input input, Tracker tracker) {

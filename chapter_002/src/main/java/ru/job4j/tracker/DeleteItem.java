@@ -1,21 +1,9 @@
 package ru.job4j.tracker;
 
-public class DeleteItem implements UserAction {
-
-    private int number;
-    private String info;
+public class DeleteItem extends BaseAction {
 
     public DeleteItem(int number, String info) {
-        this.number = number;
-        this.info = info;
-    }
-
-    public int key() {
-        return this.number;
-    }
-
-    public String info() {
-        return this.info;
+        super(number, info);
     }
 
     public void execute(Input input, Tracker tracker) {

@@ -1,20 +1,11 @@
 package ru.job4j.tracker;
 
-public class FindById implements UserAction {
-    private int number;
-    private String info;
+public class FindById extends BaseAction {
+
     public FindById(int number, String info) {
-        this.number = number;
-        this.info = info;
+        super(number, info);
     }
 
-    public int key() {
-        return this.number;
-    }
-
-    public String info() {
-        return this.info;
-    }
 
     public void execute(Input input, Tracker tracker) {
         String id = input.ask("Введите ID для поиска: ");

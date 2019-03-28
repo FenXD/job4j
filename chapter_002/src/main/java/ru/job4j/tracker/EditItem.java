@@ -1,19 +1,9 @@
 package ru.job4j.tracker;
 
-public class EditItem implements UserAction {
-    private int number;
-    private String info;
+public class EditItem extends BaseAction {
+
     public EditItem(int number, String info) {
-        this.number = number;
-        this.info = info;
-    }
-
-    public int key() {
-        return number;
-    }
-
-    public String info() {
-        return info;
+        super(number, info);
     }
 
     public void execute(Input input, Tracker tracker) {
