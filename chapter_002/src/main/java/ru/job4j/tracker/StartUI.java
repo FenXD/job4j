@@ -38,7 +38,7 @@ public class StartUI {
         menu.fillActions();
         do {
             menu.show();
-            menu.select(Integer.valueOf(this.input.ask("Select: ", menu.range)));
+            menu.select(Integer.valueOf(this.input.ask("Select: ", menu.getActionRange())));
         } while (!"y".equals(this.input.ask("Exit? (y/n): ")));
     }
 

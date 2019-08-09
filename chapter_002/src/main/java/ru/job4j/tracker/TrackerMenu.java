@@ -6,7 +6,6 @@ import java.util.List;
 public class TrackerMenu {
     private Input input;
     private Tracker tracker;
-    public int[] range;
 
     private List<UserAction> actions = new ArrayList<>();
 
@@ -27,6 +26,7 @@ public class TrackerMenu {
     public int getActionLength() {
         return this.actions.size();
     }
+
     public void fillActions() {
         this.actions.add(new AddItem(1, "Add new Item"));
         this.actions.add(new ShowAll(2, "Show all items"));
@@ -34,11 +34,13 @@ public class TrackerMenu {
         this.actions.add(new DeleteItem(4, "Delete item"));
         this.actions.add(new FindById(5, "Find item by id"));
         this.actions.add(new FindByName(6, "Find item by name"));
-        this.range = new int[this.getActionLength()];
+    }
+    public int[] getActionRange() {
+        int [] range = new int[this.getActionLength()];
         for (int i = 1; i <= range.length; i++) {
             range[i - 1] = i;
         }
-
+        return range;
     }
     public void select(int key) {
         this.actions.get(key - 1).execute(this.input, this.tracker);
