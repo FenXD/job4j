@@ -24,17 +24,16 @@ public class ConsoleInput implements Input {
 
     public int ask(String question, int[] range) {
         boolean exists = false;
-       int key = Integer.valueOf(this.ask(question));
-       for (int value : range) {
-           if (key == value) {
-               exists = true;
-           }
-       }
-        if (exists) {
-            return key;
-        } else {
+        int key = Integer.valueOf(this.ask(question));
+        for (int value : range) {
+            if (key == value) {
+                exists = true;
+            }
+        }
+        if (!exists) {
             throw new MenuOutExceprion("Out of bounds");
         }
+        return key;
     }
 
 }
