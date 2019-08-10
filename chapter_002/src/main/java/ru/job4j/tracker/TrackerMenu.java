@@ -36,7 +36,7 @@ public class TrackerMenu {
         this.actions.add(new FindByName(6, "Find item by name"));
     }
     public int[] getActionRange() {
-        int [] range = new int[this.getActionLength()];
+        int[] range = new int[this.getActionLength()];
         for (int i = 1; i <= range.length; i++) {
             range[i - 1] = i;
         }
