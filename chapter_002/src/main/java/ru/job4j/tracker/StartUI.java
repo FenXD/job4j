@@ -36,9 +36,10 @@ public class StartUI {
     public void init() {
         TrackerMenu menu = new TrackerMenu(this.input, this.tracker);
         menu.fillActions();
+        int[] range = menu.getActionRange();
         do {
             menu.show();
-            menu.select(Integer.valueOf(this.input.ask("Select: ", menu.getActionRange())));
+            menu.select(Integer.valueOf(this.input.ask("Select: ", range)));
         } while (!"y".equals(this.input.ask("Exit? (y/n): ")));
     }
 
