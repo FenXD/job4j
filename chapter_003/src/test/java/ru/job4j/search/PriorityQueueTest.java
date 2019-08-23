@@ -14,9 +14,12 @@ public class PriorityQueueTest {
     @Test
     public void whenAddHigherPriority() {
         PriorityQueue pq = new PriorityQueue();
-        pq.put(new Task(2, "Second"));
-        pq.put(new Task(1, "First"));
-        pq.put(new Task(5, "Fifth"));
+        pq.put(new Task(5, "high5"));
+        pq.put(new Task(1, "urgent"));
+        pq.put(new Task(3, "middle"));
+        pq.put(new Task(5, "low5"));
+        pq.put(new Task(8, "low8"));
+        pq.put(new Task(2, "urgent"));
         assertThat(pq.take().getDesc(), is("First"));
     }
 }
