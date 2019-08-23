@@ -20,6 +20,6 @@ public class PriorityQueueTest {
         pq.put(new Task(5, "low5"));
         pq.put(new Task(8, "low8"));
         pq.put(new Task(2, "urgent"));
-        assertThat(pq.take().getDesc(), is("First"));
+        assertThat(pq.take().getDesc(), is("urgent"));
     }
 }
