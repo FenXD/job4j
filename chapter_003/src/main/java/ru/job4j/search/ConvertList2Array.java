@@ -14,14 +14,9 @@ public class ConvertList2Array {
         int cells = (list.size() % rows == 0) ? list.size() / rows : list.size() / rows + 1;
         int index = 0;
         int[][] array = new int[rows][cells];
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < cells; j++) {
-                if (index < list.size()) {
-                    array[i][j] = list.listIterator(index++).next();
-                }
-            }
+        for (Integer num : list) {
+            array[index / 3][index++ % 3] = num;
         }
-
         return array;
     }
 }
