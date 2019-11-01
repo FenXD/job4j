@@ -1,5 +1,6 @@
 package ru.job4j.search;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,5 +19,15 @@ public class ConvertList2Array {
             array[index / 3][index++ % 3] = num;
         }
         return array;
+    }
+
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> result = new ArrayList<Integer>();
+        for (int[] arr: list) {
+            for (int num: arr) {
+                result.add(num);
+            }
+        }
+        return result;
     }
 }

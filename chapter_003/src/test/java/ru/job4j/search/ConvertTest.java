@@ -2,7 +2,9 @@ package ru.job4j.search;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -25,5 +27,15 @@ public class ConvertTest {
                 {7, 0, 0}
         };
         assertThat(result, is(expect));
+    }
+
+    @Test
+    public void when2ArraysInListThen1Summed() {
+        ConvertList2Array converter = new ConvertList2Array();
+        List<int[]> input = new ArrayList<>();
+        input.add(new int[] {1, 2});
+        input.add(new int[] {3, 4, 6});
+        List<Integer> expect = Arrays.asList(1, 2, 3, 4, 6);
+        assertThat(converter.convert(input), is(expect));
     }
 }
