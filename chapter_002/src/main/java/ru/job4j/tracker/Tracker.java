@@ -1,7 +1,9 @@
 package ru.job4j.tracker;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author Maksim Katorgin
@@ -9,7 +11,7 @@ import java.util.Arrays;
  * @since 0.1
  */
 public class Tracker {
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<Item>();
     private int position = 0;
 
     /**
@@ -18,7 +20,8 @@ public class Tracker {
      */
     public Item add(Item item) {
         item.setId(this.generateId());
-        this.items[this.position++] = item;
+        items.add(item);
+        position++;
         return item;
     }
 
@@ -30,8 +33,8 @@ public class Tracker {
     public Item findById(String id) {
         Item result = null;
         for (int i = 0; i < this.position; i++) {
-            if (items[i].getId().equals(id)) {
-                result = items[i];
+            if (items.get(i).getId().equals(id)) {
+                result = items.get(i);
                 break;
             }
         }
@@ -48,8 +51,9 @@ public class Tracker {
     public boolean delete(String id) {
         boolean result = false;
         for (int i = 0; i < position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                System.arraycopy(this.items, i + 1, this.items, i, this.position - i);
+            if (items.get(i).getId().equals(id)) {
+                items.remove(i);
+                //System.arraycopy(this.items, i + 1, this.items, i, this.position - i);
                 position--;
                 result = true;
                 break;
@@ -68,9 +72,9 @@ public class Tracker {
     public boolean replace(String id, Item task) {
         boolean result = false;
         for (int i = 0; i < this.position; i++) {
-            if (this.items[i].getId().equals(id)) {
-                task.setId(this.items[i].getId());
-                this.items[i] = task;
+            if (items.get(i).getId().equals(id)) {
+                task.setId(items.get(i).getId());
+                items.add(i, task);
                 result = true;
                 break;
             }
@@ -82,8 +86,8 @@ public class Tracker {
      * Получение массива всех ненулевых элментов
      * @return массив ненулевых элементов
      */
-    public Item[] findAll() {
-        return Arrays.copyOf(this.items, position);
+    public List<Item> findAll() {
+        return this.items;
     }
 
     /**
@@ -95,8 +99,8 @@ public class Tracker {
         int count = 0;
         Item[] result = new Item[position];
         for (int i = 0; i < position; i++) {
-            if (items[i].getName().equals(key)) {
-                result[count++] = items[i];
+            if (items.get(i).getName().equals(key)) {
+                result[count++] = items.get(i);
             }
         }
         return Arrays.copyOf(result, count);
