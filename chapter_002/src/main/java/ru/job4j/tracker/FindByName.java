@@ -1,5 +1,7 @@
 package ru.job4j.tracker;
 
+import java.util.List;
+
 public class FindByName extends BaseAction {
 
     public FindByName(int number, String info) {
@@ -8,9 +10,9 @@ public class FindByName extends BaseAction {
 
     public void execute(Input input, Tracker tracker) {
         String key = input.ask("Введите имя для поиска: ");
-        Item[] items = tracker.findByName(key);
-        for (int i = 0; i < items.length; i++) {
-            System.out.println(items[i].toString());
+        List<Item> items = tracker.findByName(key);
+        for (int i = 0; i < items.size(); i++) {
+            System.out.println(items.get(i).toString());
             System.out.println("__________________");
         }
     }

@@ -58,7 +58,7 @@ public class TrackerTest {
         Item second = new Item("second", "second", 1234L);
         tracker.add(first);
         tracker.add(second);
-        assertThat(1, is(tracker.findByName("first").length));
+        assertThat(1, is(tracker.findByName("first").size()));
     }
 
     @Test

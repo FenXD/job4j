@@ -12,7 +12,6 @@ import java.util.List;
  */
 public class Tracker {
     private final List<Item> items = new ArrayList<Item>();
-    private int position = 0;
 
     /**
      * добавление заявки
@@ -21,7 +20,6 @@ public class Tracker {
     public Item add(Item item) {
         item.setId(this.generateId());
         items.add(item);
-        position++;
         return item;
     }
 
@@ -32,7 +30,7 @@ public class Tracker {
      */
     public Item findById(String id) {
         Item result = null;
-        for (int i = 0; i < this.position; i++) {
+        for (int i = 0; i < this.items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 result = items.get(i);
                 break;
@@ -50,11 +48,9 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean result = false;
-        for (int i = 0; i < position; i++) {
+        for (int i = 0; i < this.items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 items.remove(i);
-                //System.arraycopy(this.items, i + 1, this.items, i, this.position - i);
-                position--;
                 result = true;
                 break;
             }
@@ -71,7 +67,7 @@ public class Tracker {
      */
     public boolean replace(String id, Item task) {
         boolean result = false;
-        for (int i = 0; i < this.position; i++) {
+        for (int i = 0; i < this.items.size(); i++) {
             if (items.get(i).getId().equals(id)) {
                 task.setId(items.get(i).getId());
                 items.add(i, task);
@@ -95,15 +91,15 @@ public class Tracker {
      * @param key - имя для поиска
      * @return массив найденных элементов
      */
-    public Item[] findByName(String key) {
+    public List<Item> findByName(String key) {
         int count = 0;
-        Item[] result = new Item[position];
-        for (int i = 0; i < position; i++) {
+        List<Item> result = new ArrayList<Item>();
+        for (int i = 0; i < this.items.size(); i++) {
             if (items.get(i).getName().equals(key)) {
-                result[count++] = items.get(i);
+                result.add(items.get(i));
             }
         }
-        return Arrays.copyOf(result, count);
+        return result;
     }
 
     /**
