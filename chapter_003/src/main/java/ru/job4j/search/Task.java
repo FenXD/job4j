@@ -6,7 +6,7 @@ package ru.job4j.search;
  * @since 0.1
  * @version $Id$
  */
-public class Task {
+public class Task implements Comparable<Task> {
     private int priority;
     private String desc;
 
@@ -23,4 +23,8 @@ public class Task {
         return desc;
     }
 
+    @Override
+    public int compareTo(Task t) {
+        return Integer.compare(this.priority, t.getPriority());
+    }
 }
