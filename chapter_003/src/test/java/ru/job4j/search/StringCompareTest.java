@@ -1,0 +1,57 @@
+package ru.job4j.search;
+
+
+import org.junit.Test;
+import static org.junit.Assert.assertThat;
+import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.lessThan;
+import static org.hamcrest.core.Is.is;
+
+public class StringCompareTest {
+    @Test
+    public void whenWordAreEqual() {
+        StringCompare sc = new StringCompare();
+        int result = sc.compare("Ivanov", "Ivanov");
+        assertThat(result, is(0));
+    }
+
+    @Test
+    public void whenLeftLessThanRightResultShouldBeNegative() {
+        StringCompare compare = new StringCompare();
+        int rst = compare.compare(
+                "Ivanov",
+                "Ivanova"
+        );
+        assertThat(rst, lessThan(0));
+    }
+
+    @Test
+    public void whenLeftGreaterThanRightResultShouldBePositive() {
+        StringCompare compare = new StringCompare();
+        int rst = compare.compare(
+                "Petrov",
+                "Ivanova"
+        );
+        assertThat(rst, greaterThan(0));
+    }
+
+    @Test
+    public void secondCharOfLeftGreaterThanRightShouldBePositive() {
+        StringCompare compare = new StringCompare();
+        int rst = compare.compare(
+                "Petrov",
+                "Patrov"
+        );
+        assertThat(rst, greaterThan(0));
+    }
+
+    @Test
+    public void secondCharOfLeftLessThanRightShouldBeNegative() {
+        StringCompare compare = new StringCompare();
+        int rst = compare.compare(
+                "Patrova",
+                "Petrov"
+        );
+        assertThat(rst, lessThan(0));
+    }
+}
