@@ -12,12 +12,7 @@ import java.util.Comparator;
 public class StringCompare implements Comparator<String> {
 
 
-    public static void main(String[] args) {
-        StringCompare sc = new StringCompare();
-        System.out.println(sc.compare("a", "azzzzzz"));
-        System.out.println("a".compareTo("azzzzzz"));
-        System.out.println(Character.compare('a', 'd'));
-    }
+
     /**
      * Method for comparing tho strings bu chars
      * @param s1 - first string
@@ -41,7 +36,6 @@ public class StringCompare implements Comparator<String> {
             }
             i++;
         }
-
-        return s1.length() > s2.length() ? maxLength - minLength : minLength - maxLength;
+        return s1.length() > s2.length() ? s2.length() - s1.length() : s1.length() - s2.length();
     }
 }
