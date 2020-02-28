@@ -25,14 +25,14 @@ public class StringCompare implements Comparator<String> {
     public int compare(String s1, String s2) {
         int result = 0;
         int i = 0;
-        int minLength = s1.length() > s2.length() ? s2.length() : s1.length();
+        int minLength = Math.min(s1.length(), s2.length());
         while (i < minLength) {
-                result += Character.compare(s1.charAt(i), s2.charAt(i));
+                result = Character.compare(s1.charAt(i), s2.charAt(i));
             if (result != 0) {
                 return result;
             }
             i++;
         }
-        return s1.length() > s2.length() ? s2.length() - s1.length() : s1.length() - s2.length();
+        return Integer.compare(s1.length(), s2.length());
     }
 }
