@@ -1,6 +1,5 @@
 package ru.job4j.search;
 
-import java.sql.SQLOutput;
 import java.util.Comparator;
 
 /**
